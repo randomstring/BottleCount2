@@ -57,7 +57,9 @@ ROOT_URLCONF = 'bottlecount.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR,
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,12 +76,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bottlecount.wsgi.application'
 
+# added for python social auth
 AUTHENTICATION_BACKENDS = (
    'social.backends.facebook.FacebookOAuth2',
    'social.backends.google.GoogleOAuth2',
    'social.backends.twitter.TwitterOAuth',
    'django.contrib.auth.backends.ModelBackend',
 )
+# /end python social auth
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
@@ -129,3 +133,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    ]
+
+LOGIN_REDIRECT_URL = '/'
+
